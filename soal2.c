@@ -51,16 +51,16 @@ int dfs(struct node* x, int size){
     if (temp->sel!=0 && temp->check!=1){
         size += 1;
         temp->check = 1;
-        if (temp->kanan->sel!=0 && temp->kanan->check!=1){
+        if (temp->kanan->sel==1 && temp->kanan->check!=1){
             push(temp->kanan);
         }
-        if (temp->kiri->sel!=0 && temp->kiri->check!=1){
+        if (temp->kiri->sel==1 && temp->kiri->check!=1){
             push(temp->kiri);
         }
-        if (temp->bawah->sel!=0 && temp->bawah->check!=1){
+        if (temp->bawah->sel==1 && temp->bawah->check!=1){
             push(temp->bawah);
         }
-        if (temp->atas->sel!=0 && temp->atas->check!=1){
+        if (temp->atas->sel==1 && temp->atas->check!=1){
             push(temp->atas);
         }
         size += dfs(pop(), size);
@@ -108,10 +108,14 @@ int main(){
             temp1 = temp1->bawah;
             temp1 = newNode(matrix[j][i]);
             temp2 = temp1;
-            temp2->kanan->kiri = temp2;
-            temp2 = temp2->kanan;
+            for (int k=1;k<C;k++){
+                temp2->kanan->kiri = temp2;
+                temp2 = temp2->kanan;
+                temp2 = newNode(matrix[j][k]);
+            }
         }
     }
+
     temp = R0C0;
     int size_besar = 0;
     for (int i=0;i<C;i++){
