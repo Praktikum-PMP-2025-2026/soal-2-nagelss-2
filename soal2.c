@@ -3,7 +3,7 @@
  *   Hari dan Tanggal    : Rabu, 13 Mei 2026
  *   Nama (NIM)          : Hufnagel Ruben Lenard Situmorang (13224015)
  *   Nama File           : soal2.c
- *   Deskripsi           : Menghiung jumlah pulau dan ukuran pulau terbesar dalam grid biner
+ *   Deskripsi           : 
  * 
  */
 
@@ -72,7 +72,7 @@ int dfs(struct node* x, int size){
 }
 
 int terima_input(int input, int x, int C){
-    input = input/(pow(10,C-x+1));
+    input = input/(pow(10,C-(x+1)));
     input = input%10;
     return input;
 }
@@ -86,8 +86,8 @@ int main(){
     for (int i=0;i<R;i++){
         scanf("%d",&sel_temp);
         for (int j=0;j<C;j++){
-            sel_temp = terima_input(sel_temp,j,C);
-            matrix[i][j] = sel_temp;
+            int sel_temp1 = terima_input(sel_temp,j,C);
+            matrix[i][j] = sel_temp1;
         }
     }
 
